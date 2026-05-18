@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>QR Scanner</title>
+    <link rel="manifest" href="manifest.json">
+    <style>
+        body { 
+            margin: 0; 
+            font-family: sans-serif; 
+            display: flex; 
+            flex-direction: column; 
+            height: 100vh; 
+            background: #222; 
+        }
+        #reader { 
+            flex: 1; 
+            width: 100%; 
+            background: #000; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        #panel { 
+            flex: 0 0 45%; 
+            background: #fff; 
+            padding: 20px; 
+            overflow-y: auto; 
+            box-shadow: 0 -4px 15px rgba(0,0,0,0.3); 
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+        }
+        button { 
+            padding: 12px 20px; 
+            margin: 5px 0; 
+            font-size: 16px; 
+            cursor: pointer; 
+            background: #007BFF; 
+            color: white; 
+            border: none; 
+            border-radius: 8px; 
+            width: 100%;
+        }
+        button.secondary {
+            background: #6c757d;
+        }
+        .history-item { 
+            border-bottom: 1px solid #eee; 
+            padding: 10px 0; 
+            word-break: break-all;
+        }
+        .timestamp {
+            font-size: 12px;
+            color: #888;
+        }
+        a { color: #007BFF; font-weight: bold; text-decoration: none; }
+    </style>
+</head>
+<body>
+
+    <div id="reader"></div>
+
+    <div id="panel">
+        <div id="scan-view">
+            <h3 style="margin-top: 0;">Scan Result</h3>
+            <p id="result-text">Waiting for scan...</p>
+            <div id="controls">
+                <button id="resume-btn" style="display:none;">Resume Camera</button>
+                <button id="history-btn" class="secondary">View Scan History</button>
+            </div>
+        </div>
+
+        <div id="history-view" style="display:none;">
+            <h3 style="margin-top: 0;">Scan History</h3>
+            <div id="history-list"></div>
+            <button id="back-btn" class="secondary">Back to Scanner</button>
+        </div>
+    </div>
+
+    <!-- Include the QR scanning library -->
+    <script src="https://unpkg.com/html5-qrcode"></script>
+    <script src="app.js"></script>
+</body>
+</html>
